@@ -11,7 +11,7 @@ struct ContentView: View {
                 NavigationLink(destination: TestView()) {
                     Text("GO GO")
                         .foregroundColor(.blue)
-                }.navigationBarHidden(true)
+                }
             }
         }
     }

@@ -7,7 +7,7 @@ struct ContentView: View {
     @State private var creditOpacity:Double = 0
     
     //Put Credit Text here so it's easily edited
-    var creditText = "This game is created by Passavee Losripat. The image is created using Procreate App, which mean it can be used commercially.\nThe background used in this game is from ..., under the license, all of the musics can be commercially used.\n The information in the game is obtained from ...."
+    var creditText = "This game is created by Passavee Losripat.\n The image is created using Procreate App, which mean it can be used commercially.\nThe background used in this game is from ..., under the license, all of the musics can be commercially used.\n The information in the game is obtained from ....\nThank you so much for playing this game!"
     
     var body: some View {
         ZStack{

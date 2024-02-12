@@ -46,6 +46,7 @@ struct DialogueBoxView: View {
                 .font(.system(size: 40))
                 .foregroundColor(Color.midnightBlue)
                 .padding()
+                .padding(.bottom)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(

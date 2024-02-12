@@ -21,7 +21,7 @@ struct IntroStoryView: View {
                 Image("smoothieVillageScene")
                     .resizable()
                     .scaledToFill()
-                DialogueBoxView(speaker: "Carrot", dialogue: dialogueScript[dialogueIndex], picture: "Carrot", maxSize: 95)
+                DialogueBoxView(speaker: "Carrot", dialogue: dialogueScript[dialogueIndex], picture: "Carrot", maxSize: 100)
                     .padding(.horizontal)
                     .padding()
             }

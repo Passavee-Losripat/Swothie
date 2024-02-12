@@ -10,7 +10,11 @@ import SwiftUI
 struct IntroStoryView: View {
     var body: some View {
         NavigationView {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            ZStack{
+                Image("smoothieVillageScene")
+                    .resizable()
+                    .scaledToFill()
+            }
         }.navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
         

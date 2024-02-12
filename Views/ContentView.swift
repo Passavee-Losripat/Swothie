@@ -14,6 +14,8 @@ struct ContentView: View {
             NavigationView {
                 ZStack{
                     Image("startBackground")
+                        .resizable()
+                        .scaledToFill()
                 VStack {
                     Image("swothieText")
                         .resizable()

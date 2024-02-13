@@ -26,7 +26,7 @@ struct IntroStoryView: View {
                     .padding()
             }
             .onTapGesture {
-                if dialogueIndex == 3 {
+                if (dialogueIndex == 3) {
                     endOfIntro = true
                     dialogueIndex = 0
                 }

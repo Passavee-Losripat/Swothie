@@ -49,6 +49,15 @@ struct MoleGameView: View {
                         PlantMoleView(imageName: "Carrot", sign: swData[0], hasMole: $pots[row * 3 + column])
                             .onTapGesture {
                                 pots[row * 3 + column].toggle()
+                                if (swData[0].isWeakness) {
+                                    score += 100
+                                }
+                                else {
+                                    lifePoint -= 1
+                                    if (lifePoint == 0) {
+                                        gameOver = true
+                                    }
+                                }
                             }
                             .padding()
                     }

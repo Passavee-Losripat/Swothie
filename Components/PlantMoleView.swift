@@ -10,6 +10,8 @@ import SwiftUI
 struct PlantMoleView: View {
     var imageName: String
     var sign: swStructure
+    @State private var opacity:Double = 0
+    @State private var offset:CGFloat = 500
     @Binding var hasMole: Bool
     var body: some View {
         VStack {
@@ -21,7 +23,20 @@ struct PlantMoleView: View {
                         .frame(maxWidth: 150, maxHeight: 150)
                         .onAppear()
                 }
-                .transition(.asymmetric(insertion: .move(edge: .bottom).combined(with: .opacity), removal: .opacity))
+                //.offset(y: self.offset)
+                .opacity(opacity)
+                .onAppear {
+                    withAnimation(.easeOut(duration: 0.3)){
+                        self.opacity = 1
+                        self.offset = 0
+                    }
+                }
+                .onDisappear {
+                    withAnimation(.easeOut(duration: 0.3)) {
+                        self.offset = 500
+                        self.opacity = 0
+                    }
+                }
             }
             Image("Pot")
                 .resizable()

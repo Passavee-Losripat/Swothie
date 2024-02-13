@@ -14,6 +14,7 @@ struct SwotExplainView: View {
     @State var showThreat:Bool = false
     @State var swotExplain:Bool = false
     @State var dialogueIndex:Int = 0
+    @State var lastDialogue: Bool = false
     @State var changeView:Bool = false
     let dialogueScript = ["Leader, This is Swot Sword, the most powerful weapon of our village. In order to master it, you need to master swot analysis.", "Swot analysis is a framework used to analyze situation by assessing both internal and external factors.", "Swot analysis can be applied in project planning and in business field. Of course it can be used to improved our smoothie village!", "The swot sword will give knowledge to the worthy one. Now touch the sword and see if you are worthy!", "Now you know about swot analysis. Let's see if you can spot strength and weakness of our smoothie village!"]
     var body: some View {
@@ -91,11 +92,15 @@ struct SwotExplainView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
         .onTapGesture {
+            print(dialogueIndex)
             if (dialogueIndex < 3){
                 dialogueIndex += 1
             }
-            else if (dialogueIndex == 4){
+            else if (lastDialogue){
                 changeView.toggle()
+            }
+            else if (dialogueIndex == 4){
+                lastDialogue = true
             }
         }
     }

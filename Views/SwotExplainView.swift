@@ -92,7 +92,6 @@ struct SwotExplainView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
         .onTapGesture {
-            print(dialogueIndex)
             if (dialogueIndex < 3){
                 dialogueIndex += 1
             }

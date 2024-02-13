@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SpriteKit
 
 struct WhackTheMoleView: View {
     @State var showInstruction: Bool = true

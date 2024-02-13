@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PlantMoleView: View {
-    var imageName: String
-    var sign: swStructure
+    var sign: swStructure = randomSWData()
+    var imageName:String = randomFruit()
     @State private var opacity:Double = 0
     @State private var offset:CGFloat = 500
     @Binding var hasMole: Bool
@@ -54,7 +54,7 @@ struct PreviewWrapper: View {
                 hasMole.toggle()
             }
             Spacer()
-            PlantMoleView(imageName: "Carrot", sign: swData[0], hasMole: $hasMole)
+            PlantMoleView(hasMole: $hasMole)
         }
     }
 }

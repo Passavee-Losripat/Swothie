@@ -46,7 +46,7 @@ struct MoleGameView: View {
             ForEach(0..<3){ row in
                 HStack {
                     ForEach(0..<3) { column in
-                        PlantMoleView(imageName: "Carrot", sign: swData[0], hasMole: $pots[row * 3 + column])
+                        PlantMoleView(hasMole: $pots[row * 3 + column])
                             .onTapGesture {
                                 pots[row * 3 + column].toggle()
                                 if (swData[0].isWeakness) {

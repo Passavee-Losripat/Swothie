@@ -16,7 +16,7 @@ struct SwotExplainView: View {
     @State var dialogueIndex:Int = 0
     @State var lastDialogue: Bool = false
     @State var changeView:Bool = false
-    let dialogueScript = ["Leader, This is Swot Sword, the most powerful weapon of our village. In order to master it, you need to master swot analysis.", "Swot analysis is a framework used to analyze situation by assessing both internal and external factors.", "Swot analysis can be applied in project planning and in business field. Of course it can be used to improved our smoothie village!", "The swot sword will give knowledge to the worthy one. Now touch the sword and see if you are worthy!", "Now you know about swot analysis. Let's see if you can spot strength and weakness of our smoothie village!"]
+    let dialogueScript = ["Leader, This is Swot Sword, the most powerful weapon of our village. In order to master it, you need to master swot analysis.", "Swot analysis is a framework used to analyze situation by assessing both internal and external factors.", "Swot analysis is applicable in project planning and in business. Of course it can be used to improve our smoothie village!", "The swot sword will give knowledge to the worthy one. Now touch the sword and see if you are worthy!", "Now you know about swot analysis. Let's see if you can spot strength and weakness of our smoothie village!"]
     var body: some View {
         if (changeView){
             WhackTheMoleView()
@@ -51,16 +51,16 @@ struct SwotExplainView: View {
                             }
                     }
                     if (showStrength) {
-                        CardView(topic: "S - Strength", explanation: "Strength refers to what you are good at.", exitText: "Got it!", controlVariable: $showStrength)
+                        CardView(topic: "S - Strength", explanation: "Strength refers to what you are good at. For example, the muscle is the strength of body builder.💪", exitText: "Got it!", controlVariable: $showStrength)
                     }
                     else if (showWeakness) {
-                        CardView(topic: "W - Weakness", explanation: "Weakness refers to what you have to improve.", exitText: "Got it!", controlVariable: $showWeakness)
+                        CardView(topic: "W - Weakness", explanation: "Weakness refers to what you have to improve. For example, talking in front of people may be a weakness for shy people.🤒", exitText: "Got it!", controlVariable: $showWeakness)
                     }
                     else if (showOppportunity){
-                        CardView(topic: "O - Opportunity", explanation: "Opportunity refers to the external situation that may give advantage to our organization.", exitText: "Got it!", controlVariable: $showOppportunity)
+                        CardView(topic: "O - Opportunity", explanation: "Opportunity refers to the external situation that may give advantage to our organization. For example, new year season give you some time to rest and stay with your family.🤩", exitText: "Got it!", controlVariable: $showOppportunity)
                     }
                     else if (showThreat){
-                        CardView(topic: "T - Threat", explanation: "Threat refers to the external situation that may harm our organization.", exitText: "Got it!", controlVariable: $showThreat)
+                        CardView(topic: "T - Threat", explanation: "Threat refers to the external situation that may harm our organization., For example, the rainy season may prevent us from going outside.😭", exitText: "Got it!", controlVariable: $showThreat)
                     }
                         HStack{
                             Spacer()
@@ -72,6 +72,7 @@ struct SwotExplainView: View {
                                 } label: {
                                     ButtonText(text: "I got it all", size: 50)
                                 }
+                                .padding(.horizontal)
                                 .padding()
                             }
                         }
@@ -86,6 +87,8 @@ struct SwotExplainView: View {
                             }
                         }
                     DialogueBoxView(speaker: "Carrot", dialogue: dialogueScript[dialogueIndex], picture: "Carrot", maxSize: 95)
+                        .padding(.horizontal)
+                        .padding()
                 }
             }
         }

@@ -16,3 +16,7 @@ func randomSWData() -> swStructure {
     let amount = swData.count
     return swData[Int.random(in: 0..<amount)]
 }
+
+func randomMole () -> Int {
+    return Int.random(in: 0..<9)
+}

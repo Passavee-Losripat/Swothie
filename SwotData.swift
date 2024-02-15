@@ -17,10 +17,13 @@ struct swStructure {
 let swData: [swStructure] = [
     //Strength
     swStructure(message: "Use Fresh Fruit", isWeakness: false),
+    swStructure(message: "Eco-freindly Package", isWeakness: false),
+    swStructure(message: "Various Products", isWeakness: false),
+    swStructure(message: "", isWeakness: false),
     //swStructure(message: "", isWeakness: false),
     
     //Weakness
-    swStructure(message: "", isWeakness: true),
+    swStructure(message: "Limited Customers", isWeakness: true),
     //swStructure(message: "", isWeakness: true)
 ]
 

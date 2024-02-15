@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct PlantMoleView: View {
-    var sign: swStructure = randomSWData()
-    var imageName:String = randomFruit()
+    @State var sign: swStructure = swStructure(message: "", isWeakness: true)
+    @State var imageName:String = ""
     @State private var opacity:Double = 0
     @State private var offset:CGFloat = 500
+    @State var showTime: Int = 5
+    @State var rageMode:Bool
     @Binding var hasMole: Bool
+    
+    let plantTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack {
             if (hasMole) {
@@ -25,13 +30,29 @@ struct PlantMoleView: View {
                 }
                 //.offset(y: self.offset)
                 .opacity(opacity)
+                .onReceive(plantTimer, perform: { _ in
+                    if (showTime>0) {
+                        if (rageMode) {
+                            showTime -= 2
+                        }
+                        else {
+                            showTime -= 1
+                        }
+                    } else {
+                        plantTimer.upstream.connect().cancel()
+                        hasMole  = false
+                    }
+                })
                 .onAppear {
+                sign = randomSWData()
+                imageName = randomFruit()
                     withAnimation(.easeOut(duration: 0.3)){
                         self.opacity = 1
                         self.offset = 0
                     }
                 }
                 .onDisappear {
+                    plantTimer.upstream.connect().cancel()
                     withAnimation(.easeOut(duration: 0.3)) {
                         self.offset = 500
                         self.opacity = 0
@@ -54,7 +75,7 @@ struct PreviewWrapper: View {
                 hasMole.toggle()
             }
             Spacer()
-            PlantMoleView(hasMole: $hasMole)
+            PlantMoleView(rageMode: true, hasMole: $hasMole)
         }
     }
 }

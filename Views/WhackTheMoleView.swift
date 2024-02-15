@@ -33,8 +33,10 @@ struct WhackTheMoleView: View {
                     CardView(topic: "Game Over", explanation: "You get the high score of \(score). Not Bad!", exitText: "Let's continue to next game", controlVariable: $changeView)
                 }
                 else{
-                    MoleGameView(gameOver: $gameOver, score: $score)
-                        .frame(maxWidth: 900, maxHeight: 800)
+                    ZStack{
+                        MoleGameView(gameOver: $gameOver, score: $score)
+                            .frame(maxWidth: 900, maxHeight: 800)
+                    }
                 }
             }
         }

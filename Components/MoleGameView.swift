@@ -12,95 +12,95 @@ struct MoleGameView: View {
     @Binding var gameOver:Bool
     @Binding var score: Int
     @State var lifePoint: Int = 5
-    @State var time:Int = 20
+    @State var time:Int = 45
     @State var rageMode: Bool = false
     @State var pots: [Bool] = Array(repeating: false, count: 9)
     @State var moleIndex:Int = randomMole()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack{
-            HStack {
-                Text(time/10>=1 ? "\(Image(systemName: "clock.fill")) 00:\(time)": "\(Image(systemName: "clock.fill")) 00:0\(time)")
-                    .font(.system(size: 40))
-                    .bold()
-                    .foregroundColor(Color.tomatoRed)
-                    .padding()
-                    .padding(.horizontal)
-                    .background(Color.white)
-                    .overlay(RoundedRectangle(cornerRadius: 17)
-                        .stroke(Color.tomatoRed, lineWidth: 7)
-                    )
-                    .padding()
-                    .onReceive(timer) {  _ in
-                        if (time > 0) {
-                            if (time == 15) {
-                                rageMode = true
-                            }
-                            if rageMode {
-                                if (time%5 == 0){
-                                    moleIndex = randomMole()
-                                    while (pots[moleIndex]){
-                                        moleIndex = randomMole()
-                                    }
-                                    pots[moleIndex] =  true
+        ZStack {
+            VStack{
+                HStack {
+                    Text(time/10>=1 ? "\(Image(systemName: "clock.fill")) 00:\(time)": "\(Image(systemName: "clock.fill")) 00:0\(time)")
+                        .font(.system(size: 40))
+                        .bold()
+                        .foregroundColor(Color.tomatoRed)
+                        .padding()
+                        .padding(.horizontal)
+                        .background(Color.white)
+                        .overlay(RoundedRectangle(cornerRadius: 17)
+                            .stroke(Color.tomatoRed, lineWidth: 7)
+                        )
+                        .padding()
+                        .onReceive(timer) {  _ in
+                            if (time > 0) {
+                                if (time == 15) {
+                                    rageMode = true
                                 }
-                            }
-                            else{
-                                if (time%3 == 0){
-                                    moleIndex = randomMole()
-                                    while (pots[moleIndex]){
+                                if rageMode {
+                                    if (time%3 == 0){
                                         moleIndex = randomMole()
+                                        while (pots[moleIndex]){
+                                            if (pots.allSatisfy { $0 == true }){
+                                                break
+                                            }
+                                            moleIndex = randomMole()
+                                        }
+                                        pots[moleIndex] =  true
                                     }
-                                    pots[moleIndex] =  true
                                 }
+                                else{
+                                    if (time%5 == 0){
+                                        moleIndex = randomMole()
+                                        while (pots[moleIndex]){
+                                            if (pots.allSatisfy { $0 == true }){
+                                                break
+                                            }
+                                            
+                                            moleIndex = randomMole()
+                                        }
+                                        pots[moleIndex] =  true
+                                    }
+                                }
+                                time -= 1
+                            } else {
+                                gameOver = true
+                                timer.upstream.connect().cancel()
                             }
-                            time -= 1
-                        } else {
-                            gameOver = true
-                            timer.upstream.connect().cancel()
+                        }
+                    
+                    Text("\(Image(systemName: "heart.fill")) \(lifePoint)")
+                        .font(.system(size: 40))
+                        .bold()
+                        .foregroundColor(Color.tomatoRed)
+                        .padding()
+                        .padding(.horizontal)
+                        .background(Color.white)
+                        .overlay(RoundedRectangle(cornerRadius: 17)
+                            .stroke(Color.tomatoRed, lineWidth: 7)
+                        )
+                    Spacer()
+                    InstructionView(text:rageMode ? "It's harvest season! The fruit will spawn faster." : "Tap all of the weakness of smoothie shop!")
+                        .padding()
+                }
+                Spacer()
+                ForEach(0..<3){ row in
+                    HStack {
+                        ForEach(0..<3) { column in
+                            PlantMoleView(rageMode: rageMode, hasMole: $pots[row * 3 + column], lifePoint: $lifePoint, score: $score, gameOver: $gameOver)
+                                .padding()
                         }
                     }
-                
-                Text("\(Image(systemName: "heart.fill")) \(lifePoint)")
-                    .font(.system(size: 40))
-                    .bold()
-                    .foregroundColor(Color.tomatoRed)
-                    .padding()
-                    .padding(.horizontal)
-                    .background(Color.white)
-                    .overlay(RoundedRectangle(cornerRadius: 17)
-                        .stroke(Color.tomatoRed, lineWidth: 7)
-                    )
+                }
                 Spacer()
             }
-            Spacer()
-            ForEach(0..<3){ row in
-                HStack {
-                    ForEach(0..<3) { column in
-                        PlantMoleView(rageMode: rageMode, hasMole: $pots[row * 3 + column])
-                            .onTapGesture {
-                                if (pots[row * 3 + column]) {
-                                    pots[row * 3 + column].toggle()
-                                    if (swData[0].isWeakness) {
-                                        score += 100
-                                    }
-                                    else {
-                                        lifePoint -= 1
-                                        if (lifePoint == 0) {
-                                            gameOver = true
-                                        }
-                                    }
-                            }
-                            }
-                            .padding()
-                    }
-                }
+            .onDisappear {
+                timer.upstream.connect().cancel()
             }
-            Spacer()
-        }
-        .onDisappear {
-            timer.upstream.connect().cancel() // Stop the timer when the view disappears
+            if (rageMode){
+                MiddleNotification(text: "HARVEST SEASON")
+            }
         }
     }
 }

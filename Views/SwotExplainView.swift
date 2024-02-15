@@ -28,27 +28,30 @@ struct SwotExplainView: View {
                     .resizable()
                     .scaledToFill()
                 if(swotExplain){
-                    HStack {
-                        FloatingBallView(character: "S", color: Color.pink)
-                            .padding()
-                            .onTapGesture {
-                                showStrength.toggle()
-                            }
-                        FloatingBallView(character: "W", color: Color.pink)
-                            .padding()
-                            .onTapGesture {
-                                showWeakness.toggle()
-                            }
-                        FloatingBallView(character: "O", color: Color.pink)
-                            .padding()
-                            .onTapGesture {
-                                showOppportunity.toggle()
-                            }
-                        FloatingBallView(character: "T", color: Color.pink)
-                            .padding()
-                            .onTapGesture {
-                                showThreat.toggle()
-                            }
+                    VStack {
+                        InstructionView(text: "You are worthy! Let's tap to see what is each character.")
+                        HStack {
+                            FloatingBallView(character: "S", color: Color.pink)
+                                .padding()
+                                .onTapGesture {
+                                    showStrength.toggle()
+                                }
+                            FloatingBallView(character: "W", color: Color.pink)
+                                .padding()
+                                .onTapGesture {
+                                    showWeakness.toggle()
+                                }
+                            FloatingBallView(character: "O", color: Color.pink)
+                                .padding()
+                                .onTapGesture {
+                                    showOppportunity.toggle()
+                                }
+                            FloatingBallView(character: "T", color: Color.pink)
+                                .padding()
+                                .onTapGesture {
+                                    showThreat.toggle()
+                                }
+                        }
                     }
                     if (showStrength) {
                         CardView(topic: "S - Strength", explanation: "Strength refers to what you are good at. For example, the muscle is the strength of body builder.💪", exitText: "Got it!", controlVariable: $showStrength)

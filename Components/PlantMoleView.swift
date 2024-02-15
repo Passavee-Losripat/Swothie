@@ -12,11 +12,14 @@ struct PlantMoleView: View {
     @State var imageName:String = ""
     @State private var opacity:Double = 0
     @State private var offset:CGFloat = 500
-    @State var showTime: Int = 5
+    @State private var showTime: Int = 5
     @State var rageMode:Bool
     @Binding var hasMole: Bool
+    @Binding var lifePoint: Int
+    @Binding var score: Int
+    @Binding var gameOver:Bool
     
-    let plantTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var plantTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -30,7 +33,7 @@ struct PlantMoleView: View {
                 }
                 //.offset(y: self.offset)
                 .opacity(opacity)
-                .onReceive(plantTimer, perform: { _ in
+                .onReceive(plantTimer) { _ in
                     if (showTime>0) {
                         if (rageMode) {
                             showTime -= 2
@@ -39,10 +42,10 @@ struct PlantMoleView: View {
                             showTime -= 1
                         }
                     } else {
-                        plantTimer.upstream.connect().cancel()
                         hasMole  = false
+                        plantTimer.upstream.connect().cancel()
                     }
-                })
+                }
                 .onAppear {
                 sign = randomSWData()
                 imageName = randomFruit()
@@ -63,11 +66,28 @@ struct PlantMoleView: View {
                 .resizable()
                 .frame(maxWidth: 150, maxHeight: 150)
         }
+        .onTapGesture {
+            if (hasMole) {
+                hasMole.toggle()
+                if (sign.isWeakness) {
+                    score += 100
+                }
+                else {
+                    lifePoint -= 1
+                    if (lifePoint == 0) {
+                        gameOver = true
+                    }
+                }
+        }
+        }
     }
 }
 
 struct PreviewWrapper: View {
     @State private var hasMole: Bool = false
+    @State var lifePoint: Int = 100
+    @State var score: Int = 0
+    @State var gameOver:Bool = false
 
     var body: some View {
         VStack {
@@ -75,7 +95,7 @@ struct PreviewWrapper: View {
                 hasMole.toggle()
             }
             Spacer()
-            PlantMoleView(rageMode: true, hasMole: $hasMole)
+            PlantMoleView(rageMode: true, hasMole: $hasMole, lifePoint: $lifePoint, score: $score, gameOver: $gameOver)
         }
     }
 }

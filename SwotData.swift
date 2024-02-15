@@ -19,11 +19,13 @@ let swData: [swStructure] = [
     swStructure(message: "Use Fresh Fruit", isWeakness: false),
     swStructure(message: "Eco-freindly Package", isWeakness: false),
     swStructure(message: "Various Products", isWeakness: false),
-    swStructure(message: "", isWeakness: false),
+    swStructure(message: "Sell online", isWeakness: false),
     //swStructure(message: "", isWeakness: false),
     
     //Weakness
-    swStructure(message: "Limited Customers", isWeakness: true),
+    swStructure(message: "Limited Customers Group", isWeakness: true),
+    swStructure(message: "Relied on Suppliers", isWeakness: true),
+    swStructure(message: "Use many exotic fruits", isWeakness: true)
     //swStructure(message: "", isWeakness: true)
 ]
 

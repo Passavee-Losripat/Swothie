@@ -66,6 +66,7 @@ struct PlantMoleView: View {
                 .resizable()
                 .frame(maxWidth: 150, maxHeight: 150)
         }
+        .frame(maxWidth: 300, maxHeight: 200)
         .onTapGesture {
             if (hasMole) {
                 hasMole.toggle()

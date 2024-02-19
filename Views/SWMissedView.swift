@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SWMissedView: View {
     @State private var nextScene:Bool = false
+    var description: [strengthWeaknessDescription] = swDescription
     var body: some View {
         ZStack {
             Image("swordScene")
@@ -19,10 +20,22 @@ struct SWMissedView: View {
             }
             else{
                 VStack {
-                    InstructionView(text: "Let's see the explaination of each weakness")
+                    InstructionView(text: "Tap to see the explantions of each strengths and weakness")
                         .padding()
                     Spacer()
-                    FloatingBallView(character: "Test", color: Color.red)
+                    VStack(spacing: 20) {
+                                ForEach(0..<2) { rowIndex in
+                                    HStack(spacing: 20) {
+                                        ForEach(0..<5) { columnIndex in
+                                            let index = rowIndex * 5 + columnIndex
+                                            if index < description.count {
+                                                SWOTCardView(text: description[index].sw, explanation: description[index].desc)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            .padding()
                     Spacer()
                     HStack{
                         Spacer()

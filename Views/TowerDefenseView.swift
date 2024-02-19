@@ -80,15 +80,15 @@ struct TowerDefenseView: View {
                             }
                             .onReceive(timer) {  _ in
                                 if (time > 0) {
-                                    if (time == 15) {
+                                    /*if (time == 15) {
                                         rageMode = true
-                                    }
+                                    }*/
                                     
                                     if rageMode {
-                                        viewModel.spawnDelay = 1.0
+                                        scene.updateSpawnDelay(0.5)
                                     }
                                     else{
-                                        viewModel.spawnDelay = 5.0
+                                        scene.viewModel?.spawnDelay = 3.0
                                     }
                                     time -= 1
                                 } else {

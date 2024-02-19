@@ -12,7 +12,7 @@ import Combine
 class GameModel: ObservableObject {
     @Published var score: Int = 0
     @Published var lifePoint: Int = 700
-    @Published var spawnDelay: TimeInterval = 1.0
+    @Published var spawnDelay: TimeInterval = 5.0
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -126,6 +126,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func updateSpawnDelay(_ newDelay: TimeInterval) {
+        self.removeAction(forKey: "spawningAction")
+        let spawnAction = SKAction.run { [weak self] in
+            self?.randomSpawnEnemy()
+        }
+        let delayAction = SKAction.wait(forDuration: newDelay)
+        let sequenceAction = SKAction.sequence([spawnAction, delayAction])
+        self.run(SKAction.repeatForever(sequenceAction), withKey: "spawningAction")
+    }
+    
     override func didMove(to view: SKView) {
         //All label is for development: Please Delete before Production
         fpsLabel = SKLabelNode(fontNamed: "Arial")
@@ -133,18 +143,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fpsLabel.fontSize = 18
         fpsLabel.horizontalAlignmentMode = .left
         fpsLabel.text = "FPS: 0"
-        addChild(fpsLabel)
+        //addChild(fpsLabel)
         
         spawnDelayLabel = SKLabelNode(fontNamed: "Arial")
         spawnDelayLabel.position = CGPoint(x: 10, y: view.frame.size.height - 60) // Adjust position as needed
         spawnDelayLabel.fontSize = 18
         spawnDelayLabel.horizontalAlignmentMode = .left
-        addChild(spawnDelayLabel)
+        //addChild(spawnDelayLabel)
         nodeCountLabel = SKLabelNode(fontNamed: "Arial")
         nodeCountLabel.position = CGPoint(x: 10, y: view.frame.size.height - 90) // Adjust position as needed
         nodeCountLabel.fontSize = 18
         nodeCountLabel.horizontalAlignmentMode = .left
-        addChild(nodeCountLabel)
+        //addChild(nodeCountLabel)
         
         /*let background = SKSpriteNode(imageNamed: "swordScene")
         background.position = CGPoint(x: size.width / 2, y: size.height / 2) // Center the background
@@ -161,14 +171,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self?.randomSpawnEnemy()
         }
         
+        /*guard let spawnDelayTime = viewModel?.spawnDelay else {
+                return
+        }*/
         let delayAction = SKAction.wait(forDuration: spawnDelay)
         let sequenceAction = SKAction.sequence([spawnAction, delayAction])
         run(SKAction.repeatForever(sequenceAction))
         
         //Change Name of Background Music Here
-        let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
+        /*let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
         backgroundMusic.autoplayLooped = true
-        addChild(backgroundMusic)
+        addChild(backgroundMusic)*/
         
     }
     
@@ -178,7 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //Add Sound Effect File Here
-        run(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+        //run(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
         
         let touchLocation = touch.location(in: self)
           
@@ -222,7 +235,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastUpdateTimeInterval = currentTime
 
         // Update spawn delay (assuming you have a way to access it, e.g., through a viewModel)
-        spawnDelayLabel.text = "Spawn Delay: \(spawnDelay)"
+        guard let spawnDelayTimeLabel = viewModel?.spawnDelay else {
+            return
+        }
+        spawnDelayLabel.text = "Spawn Delay: \(spawnDelayTimeLabel)"
         
         // Update node count
         nodeCountLabel.text = "Nodes: \(self.children.count)"
@@ -244,10 +260,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 
 struct TowerDefenceGameView: View {
-    var scene: SKScene {
+    @StateObject var viewModel = GameModel()
+    var scene: GameScene {
         let scene = GameScene()
-        scene.size = CGSize(width: 1000, height: 700)
+        scene.size = CGSize(width: 1000, height: 800)
         scene.scaleMode = .fill
+        scene.viewModel = viewModel
         return scene
     }
     

@@ -62,9 +62,11 @@ struct PlantMoleView: View {
                     }
                 }
             }
-            Image("Pot")
-                .resizable()
-                .frame(maxWidth: 150, maxHeight: 150)
+            if (!hasMole) {
+                Image("Pot")
+                    .resizable()
+                    .frame(maxWidth: 150, maxHeight: 150)
+            }
         }
         .frame(maxWidth: 300, maxHeight: 200)
         .onTapGesture {

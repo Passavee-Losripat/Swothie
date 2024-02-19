@@ -34,7 +34,7 @@ struct WhackTheMoleView: View {
                     CardView(topic: "How to play", explanation: "In this game, you have to beat all of your weakness and avoid touching strength point of our smoothie village. Try to think what can be good or bad for our smoothie product!", exitText: "Let's go!", controlVariable: $showInstruction)
                 }
                 else if (gameOver){
-                    CardView(topic: "Game Over", explanation: "You get the high score of \(score). Not Bad!", exitText: "Let's continue to next game", controlVariable: $changeView)
+                    CardView(topic: "Game Over", explanation: "You get the high score of \(score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)
                 }
                 else{
                     ZStack{

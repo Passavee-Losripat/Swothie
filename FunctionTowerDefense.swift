@@ -8,9 +8,14 @@
 import Foundation
 import SwiftUI
 
-func randomOTData() -> otStructure {
+func randomOpportunityData() -> otStructure {
     let amount = otData.count
-    return otData[Int.random(in: 0..<amount)]
+    return otData[Int.random(in: 0..<amount/2)]
+}
+
+func randomeThreatData() -> otStructure {
+    let amount = otData.count
+    return otData[Int.random(in: amount/2..<amount)]
 }
 
 func randomSpawnPoint(max: CGFloat, min:CGFloat) -> CGFloat {

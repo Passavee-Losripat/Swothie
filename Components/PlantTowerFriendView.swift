@@ -2,13 +2,13 @@
 //  SwiftUIView.swift
 //  
 //
-//  Created by Passavee Losripat on 19/2/2567 BE.
+//  Created by Passavee Losripat on 20/2/2567 BE.
 //
 
 import SwiftUI
 
-struct PlantTowerEnemyView: View {
-    var sign = randomeThreatData()
+struct PlantTowerFriendView: View {
+    var sign = randomOpportunityData()
     var imageName = randomFruit()
     var body: some View {
         Group {
@@ -22,5 +22,5 @@ struct PlantTowerEnemyView: View {
 }
 
 #Preview {
-    PlantTowerEnemyView()
+    PlantTowerFriendView()
 }

@@ -26,7 +26,7 @@ struct PreTowerDefenceView: View {
                         .padding()
                 }
                 .onTapGesture {
-                    if (dialogueIndex == 3) {
+                    if (dialogueIndex == 2) {
                         changeView = true
                         dialogueIndex = 0
                     }

@@ -24,7 +24,8 @@ struct SWOTCardView: View {
                         .frame(maxWidth: 200, maxHeight: 300)
                         .minimumScaleFactor(0.5)
                         .lineLimit(nil)
-                        .padding(10)
+                        .padding()
+                        .padding(.horizontal)
             } else {
                 Text(text)
                     .foregroundColor(.white)
@@ -39,10 +40,6 @@ struct SWOTCardView: View {
     }
 }
 
-struct SWOTCardView_Previews: PreviewProvider {
-    @State static var controlVariable: Bool = false
-    
-    static var previews: some View {
-        SWOTCardView(text: "Test", explanation: "This is test explaination. For long text, the size of characeter should be decreased by 50%. Check for the readability and the others.")
-    }
+#Preview {
+    SWOTCardView(text: "Test", explanation: "This is test explaination. For long text, the size of characeter should be decreased by 50%. Check for the readability and the others.")
 }

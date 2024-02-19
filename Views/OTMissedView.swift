@@ -16,7 +16,7 @@ struct OTMissedView: View {
                 .resizable()
                 .scaledToFill()
             if (nextScene) {
-                
+                EndingStoryView()
             }
             else{
                 VStack {

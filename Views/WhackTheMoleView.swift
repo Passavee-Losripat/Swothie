@@ -18,7 +18,7 @@ struct WhackTheMoleView: View {
     var body: some View {
         NavigationView{
             if (changeView){
-                TowerDefenseView()
+                SWMissedView()
             }
             else {
                 ZStack {

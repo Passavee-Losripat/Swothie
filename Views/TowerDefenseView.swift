@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import SpriteKit
 
 struct TowerDefenseView: View {
     @State var showInstruction: Bool = true
     @State var gameOver: Bool = false
     @State var score:Int = 0
     @State var changeView:Bool = false
+    @State var rageMode:Bool = false
+    @State private var time:Int = 45
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var scene: SKScene {
+        let scene = GameScene()
+        scene.size = CGSize(width: 1000, height: 800)
+        scene.scaleMode = .fill
+        return scene
+    }
+    
     var body: some View {
         NavigationView{
             if (changeView){
@@ -29,7 +41,56 @@ struct TowerDefenseView: View {
                     CardView(topic: "Game Over", explanation: "You get the high score of \(score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)
                 }
                 else{
-                    TowerDefenceGameView(gameOver: $gameOver, score: $score)
+                    VStack{
+                        HStack{
+                            Text(time/10>=1 ? "\(Image(systemName: "clock.fill")) 00:\(time)": "\(Image(systemName: "clock.fill")) 00:0\(time)")
+                                .font(.system(size: 40))
+                                .bold()
+                                .foregroundColor(Color.tomatoRed)
+                                .padding()
+                                .padding(.horizontal)
+                                .background(Color.white)
+                                .overlay(RoundedRectangle(cornerRadius: 17)
+                                    .stroke(Color.tomatoRed, lineWidth: 7)
+                                )
+                                .padding()
+                            
+                            /*Text("\(Image(systemName: "heart.fill")) \(lifePoint)")
+                                .font(.system(size: 40))
+                                .bold()
+                                .foregroundColor(Color.tomatoRed)
+                                .padding()
+                                .padding(.horizontal)
+                                .background(Color.white)
+                                .overlay(RoundedRectangle(cornerRadius: 17)
+                                    .stroke(Color.tomatoRed, lineWidth: 7)
+                                )*/
+                            Spacer()
+                            InstructionView(text:rageMode ? "It's harvest season! The fruit will spawn faster." : "Tap all of the threats of smoothie shop!")
+                                .padding()
+                        }
+                        Spacer()
+                        SpriteView(scene: scene)
+                            .frame(width: 1000, height: 800)
+                            .onReceive(timer) {  _ in
+                                if (time > 0) {
+                                    if (time == 15) {
+                                        rageMode = true
+                                    }
+                                    
+                                    if rageMode {
+                                        //Make A condition of spawning in rage mode
+                                    }
+                                    else{
+                                        //Make a condition of spawning in normal mode
+                                    }
+                                    time -= 1
+                                } else {
+                                    gameOver = true
+                                    timer.upstream.connect().cancel()
+                                }
+                            }
+                    }
                 }
             }
         }

@@ -16,7 +16,7 @@ struct SWMissedView: View {
                 .resizable()
                 .scaledToFill()
             if (nextScene) {
-                
+                PreTowerDefenceView()
             }
             else{
                 VStack {

@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct PlantTowerView: View {
-    var sign = randomSWData()
+struct PlantTowerEnemyView: View {
+    var sign = randomOTData()
     var imageName = randomFruit()
     var body: some View {
         Group {
@@ -22,5 +22,5 @@ struct PlantTowerView: View {
 }
 
 #Preview {
-    PlantTowerView()
+    PlantTowerEnemyView()
 }

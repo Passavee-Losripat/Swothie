@@ -20,7 +20,7 @@ let swData: [swStructure] = [
     swStructure(message: "Eco-freindly Package", isWeakness: false),
     swStructure(message: "Various Products", isWeakness: false),
     swStructure(message: "Sell online", isWeakness: false),
-    swStructure(message: "Have healthy choice", isWeakness: false),
+    swStructure(message: "Seasonal Menu Offering", isWeakness: false),
     //swStructure(message: "", isWeakness: false),
     
     //Weakness
@@ -42,9 +42,18 @@ struct otStructure {
 
 let otData: [otStructure] = [
     //Opportunities
-    otStructure(message: "", isThreat: false),
-    otStructure(message: "", isThreat: false),
+    otStructure(message: "Cheaper Fruits", isThreat: false),
+    otStructure(message: "Healthy life trend", isThreat: false),
+    otStructure(message: "Delivery Services", isThreat: false),
+    otStructure(message: "Interested Investors", isThreat: false),
+    otStructure(message: "Franchise Expansion", isThreat: false),
+    //otStructure(message: "", isThreat: false),
     
     //Threats
-    otStructure(message: "", isThreat: true),
+    otStructure(message: "Fluctuating Fruit Prices", isThreat: true),
+    otStructure(message: "Rising Rental Cost", isThreat: true),
+    otStructure(message: "Economic Downturns", isThreat: true),
+    otStructure(message: "Changing Consumer Trend", isThreat: true),
+    otStructure(message: "Increasing Competition", isThreat: true),
+    //otStructure(message: "", isThreat: true)
 ]

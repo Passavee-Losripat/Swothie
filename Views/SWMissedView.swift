@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct SWMissedView: View {
+    @State private var nextScene:Bool = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Image("swordScene")
+                .resizable()
+                .scaledToFill()
+            if (nextScene) {
+                
+            }
+            else{
+                VStack {
+                    InstructionView(text: "Let's see the explaination of each weakness")
+                        .padding()
+                    Spacer()
+                    FloatingBallView(character: "Test", color: Color.red)
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Button {
+                            nextScene = true
+                        } label: {
+                            ButtonText(text: "I got it!", size: 50)
+                        }
+                        .padding()
+                    }
+                    
+                    
+                }
+            }
+        }
     }
 }
 

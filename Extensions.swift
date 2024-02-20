@@ -13,6 +13,7 @@ extension Color {
     static let midnightBlue = Color(red: 25/255, green: 25/255, blue: 112/255)
     static let tomatoRed = Color(red: 255/255, green: 99/255, blue: 71/255)
     static let bluePastel = Color(red: 123/255, green: 211/255, blue: 234/255)
+    static let pinkPastel = Color(red: 252/255, green: 212/255, blue: 213/255)
 }
 
 extension CGPoint {

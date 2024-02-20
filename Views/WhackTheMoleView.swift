@@ -35,11 +35,17 @@ struct WhackTheMoleView: View {
                 }
                 else if (gameOver){
                     CardView(topic: "Game Over", explanation: "You get the high score of \(score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)
+                        .onAppear {
+                            BackgroundMusicManager.shared.playMusic(musicNumber: 1)
+                        }
                 }
                 else{
                     ZStack{
                         MoleGameView(gameOver: $gameOver, score: $score)
                             .frame(maxWidth: 900, maxHeight: 800)
+                            .onAppear {
+                                BackgroundMusicManager.shared.playMusic(musicNumber: 2)
+                            }
                     }
                 }
             }

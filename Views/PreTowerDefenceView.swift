@@ -12,7 +12,6 @@ struct PreTowerDefenceView: View {
     @State var changeView:Bool = false
     let dialogueScript = ["Good job, my leader! Now you know about strengths and weakness, two keys elements of swot.", "Oh no! it's look like the enemy smoothies village is invading us! And the allies are approaching at the same time!", "Now you have to protect our village and learn about opportunities and threats!"]
     var body: some View {
-        NavigationView {
             if (changeView) {
                 TowerDefenseView()
             }
@@ -33,8 +32,6 @@ struct PreTowerDefenceView: View {
                     dialogueIndex += 1
                 }
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
-            .navigationBarHidden(true)
     }
 }
 

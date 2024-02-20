@@ -156,10 +156,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         nodeCountLabel.horizontalAlignmentMode = .left
         //addChild(nodeCountLabel)
         
-        /*let background = SKSpriteNode(imageNamed: "swordScene")
+        let background = SKSpriteNode(imageNamed: "TowerSceneBackground")
         background.position = CGPoint(x: size.width / 2, y: size.height / 2) // Center the background
         background.zPosition = -1 // Ensure it's behind all other nodes
-        addChild(background)*/
+        addChild(background)
         
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
@@ -178,10 +178,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let sequenceAction = SKAction.sequence([spawnAction, delayAction])
         run(SKAction.repeatForever(sequenceAction))
         
-        //Change Name of Background Music Here
-        /*let backgroundMusic = SKAudioNode(fileNamed: "background-music-aac.caf")
+        let backgroundMusic = SKAudioNode(fileNamed: "EpicBGM.mp3")
         backgroundMusic.autoplayLooped = true
-        addChild(backgroundMusic)*/
+        addChild(backgroundMusic)
         
     }
     
@@ -260,7 +259,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 
 struct TowerDefenceGameView: View {
-    @StateObject var viewModel = GameModel()
+    @ObservedObject var viewModel = GameModel()
+    @Binding var gameOver: Bool
     var scene: GameScene {
         let scene = GameScene()
         scene.size = CGSize(width: 1000, height: 800)
@@ -271,15 +271,26 @@ struct TowerDefenceGameView: View {
     
     var body: some View {
         ZStack{
-            /*Image("TowerDefenceScene")
-                .resizable()
-                .scaledToFill()*/
             SpriteView(scene: scene)
-                .frame(width: 1000, height: 800)
+                .frame(width: 1000, height: 700)
+                .onReceive(viewModel.$lifePoint) { currentLife in
+                    if currentLife <= 0 {
+                        gameOver = true
+                    }
+                }
+                .onAppear {
+                    scene.viewModel = viewModel
+                }
         }
     }
 }
 
-#Preview {
-    TowerDefenceGameView()
+struct TowerDefenceGameView_Previews: PreviewProvider {
+    @State static var controlVariable: Bool = false
+    @State static var score: Int = 0
+    @StateObject var viewModel = GameModel()
+    
+    static var previews: some View {
+        TowerDefenceGameView(gameOver: $controlVariable)
+    }
 }

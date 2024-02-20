@@ -24,7 +24,7 @@ struct TowerDefenseView: View {
             }
             else {
                 ZStack {
-                    Image("swordScene")
+                    Image("TowerDefenceScene")
                         .resizable()
                         .scaledToFill()
                     if (showInstruction) {

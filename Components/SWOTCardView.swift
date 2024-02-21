@@ -16,26 +16,29 @@ struct SWOTCardView: View {
             Rectangle()
                 .cornerRadius(20)
                 .frame(maxWidth: 200, maxHeight: 300)
-                .foregroundColor(isFlipped ? .blue : .tomatoRed)
-            if (isFlipped) {
+                .foregroundColor(isFlipped ? Color.bluePastel : Color.midnightBlue)
+            Group {
+                if (isFlipped) {
                     Text(explanation)
-                        .foregroundColor(.white)
                         .font(.system(size: 25))
-                        .frame(maxWidth: 200, maxHeight: 300)
-                        .minimumScaleFactor(0.5)
-                        .lineLimit(nil)
-                        .padding()
-                        .padding(.horizontal)
-            } else {
-                Text(text)
-                    .foregroundColor(.white)
-                    .font(.system(size: 30))
-                    .frame(maxWidth: 200, maxHeight: 300)
-                    .padding()
+                }
+                else {
+                    Text(text)
+                        .bold()
+                        .font(.system(size: 30))
+                }
             }
+            .foregroundColor(.white)
+            .minimumScaleFactor(0.5)
+            .lineLimit(nil)
+            .frame(maxWidth: 180, maxHeight: 280)
+            .padding()
         }
+        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
         .onTapGesture {
-            isFlipped.toggle()
+            withAnimation(.easeInOut) {
+                            isFlipped.toggle()
+            }
         }
     }
 }

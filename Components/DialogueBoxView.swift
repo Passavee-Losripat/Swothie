@@ -31,7 +31,8 @@ struct DialogueBoxView: View {
                                     RoundedRectangle(cornerRadius: 17)
                                         .stroke(Color.midnightBlue, lineWidth: 7)
 
-                                )
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 17))
                 }
                 Spacer()
                 VStack{
@@ -47,6 +48,7 @@ struct DialogueBoxView: View {
                 .foregroundColor(Color.midnightBlue)
                 .padding()
                 .padding(.bottom)
+                .padding(.top)
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(
@@ -54,7 +56,8 @@ struct DialogueBoxView: View {
                                 .stroke(Color.midnightBlue, lineWidth: 7)
                                 .background(Color.white)
                                 .frame(maxHeight: maxSize)
-                        )
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 17))
         }
     }
 }

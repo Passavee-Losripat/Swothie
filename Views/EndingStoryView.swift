@@ -20,6 +20,7 @@ struct EndingStoryView: View {
                 ZStack{
                     Image("smoothieVillageScene")
                         .resizable()
+                        .ignoresSafeArea()
                         .scaledToFill()
                     DialogueBoxView(speaker: "Carrot", dialogue: dialogueScript[dialogueIndex], picture: "Carrot", maxSize: 100)
                         .padding(.horizontal)

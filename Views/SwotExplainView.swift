@@ -26,6 +26,7 @@ struct SwotExplainView: View {
             ZStack {
                 Image("swordScene")
                     .resizable()
+                    .ignoresSafeArea()
                     .scaledToFill()
                 if(swotExplain){
                     VStack {

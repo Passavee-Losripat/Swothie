@@ -17,13 +17,19 @@ struct ButtonText: View {
                 .foregroundColor(Color.tomatoRed)
                 .padding()
                 .padding(.horizontal)
-                .background(Color.white)
-                .overlay(RoundedRectangle(cornerRadius: 17)
-                    .stroke(Color.tomatoRed, lineWidth: 7)
-                )
+                .background {
+                    RoundedRectangle(cornerRadius: 17)
+                        .stroke(Color.tomatoRed, lineWidth: 7)
+                        .background(Color.white)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 17))
     }
 }
 
 #Preview {
-    ButtonText(text: "test", size: 40)
+    ZStack{
+        Color.pinkPastel
+            .ignoresSafeArea()
+        ButtonText(text: "test", size: 50)
+    }
 }

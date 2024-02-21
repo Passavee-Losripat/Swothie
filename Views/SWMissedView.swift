@@ -14,6 +14,7 @@ struct SWMissedView: View {
         ZStack {
             Image("swordScene")
                 .resizable()
+                .ignoresSafeArea()
                 .scaledToFill()
             if (nextScene) {
                 PreTowerDefenceView()

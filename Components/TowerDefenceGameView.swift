@@ -12,19 +12,12 @@ import Combine
 class GameModel: ObservableObject {
     @Published var score: Int = 0
     @Published var lifePoint: Int = 700
-    @Published var spawnDelay: TimeInterval = 5.0
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var viewModel: GameModel?
     var spawnDelay: TimeInterval = 1.0
     let smoothieTower = SKSpriteNode(imageNamed: "SmoothieTower")
-    
-    //This is for development: Please Delete before production
-    var fpsLabel: SKLabelNode!
-    var spawnDelayLabel: SKLabelNode!
-    var nodeCountLabel: SKLabelNode!
-    private var lastUpdateTimeInterval: TimeInterval = 0
     
     struct PhysicsCategory {
         static let none : UInt32 = 0
@@ -86,13 +79,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func projectileDidCollideWithMonster(projectile: SKShapeNode, monster: SKSpriteNode) {
-        //Should replace all of SKShapeNode to SKSpriteNode when add ball image
       projectile.removeFromParent()
       monster.removeFromParent()
     }
     
     func projectileDidCollideWithFriends(projectile: SKShapeNode, friend: SKSpriteNode){
-        //Should replace all of SKShapeNode to SKSpriteNode when add ball image
         projectile.removeFromParent()
         friend.removeFromParent()
     }
@@ -111,7 +102,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           (secondBody.categoryBitMask & PhysicsCategory.projectile != 0)) {
             if let monster = firstBody.node as? SKSpriteNode,
                let projectile = secondBody.node as? SKShapeNode {
-                //Should replace all of SKShapeNode to SKSpriteNode when add ball image
                 projectileDidCollideWithMonster(projectile: projectile, monster: monster)
             }
         }
@@ -119,7 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                  (secondBody.categoryBitMask & PhysicsCategory.projectile != 0)) {
             if let projectile = firstBody.node as? SKShapeNode,
                let friend = secondBody.node as? SKSpriteNode {
-                //Should replace all of SKShapeNode to SKSpriteNode when add ball image
                 projectileDidCollideWithFriends(projectile: projectile, friend: friend)
             }
             
@@ -137,28 +126,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
-        //All label is for development: Please Delete before Production
-        fpsLabel = SKLabelNode(fontNamed: "Arial")
-        fpsLabel.position = CGPoint(x: 10, y: view.frame.size.height - 30) // Adjust position as needed
-        fpsLabel.fontSize = 18
-        fpsLabel.horizontalAlignmentMode = .left
-        fpsLabel.text = "FPS: 0"
-        //addChild(fpsLabel)
-        
-        spawnDelayLabel = SKLabelNode(fontNamed: "Arial")
-        spawnDelayLabel.position = CGPoint(x: 10, y: view.frame.size.height - 60) // Adjust position as needed
-        spawnDelayLabel.fontSize = 18
-        spawnDelayLabel.horizontalAlignmentMode = .left
-        //addChild(spawnDelayLabel)
-        nodeCountLabel = SKLabelNode(fontNamed: "Arial")
-        nodeCountLabel.position = CGPoint(x: 10, y: view.frame.size.height - 90) // Adjust position as needed
-        nodeCountLabel.fontSize = 18
-        nodeCountLabel.horizontalAlignmentMode = .left
-        //addChild(nodeCountLabel)
-        
+
         let background = SKSpriteNode(imageNamed: "TowerSceneBackground")
-        background.position = CGPoint(x: size.width / 2, y: size.height / 2) // Center the background
-        background.zPosition = -1 // Ensure it's behind all other nodes
+        background.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        background.zPosition = -1
         addChild(background)
         
         physicsWorld.gravity = .zero
@@ -171,9 +142,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self?.randomSpawnEnemy()
         }
         
-        /*guard let spawnDelayTime = viewModel?.spawnDelay else {
-                return
-        }*/
         let delayAction = SKAction.wait(forDuration: spawnDelay)
         let sequenceAction = SKAction.sequence([spawnAction, delayAction])
         run(SKAction.repeatForever(sequenceAction))
@@ -189,16 +157,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        //Add Sound Effect File Here
-        //run(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+        run(SKAction.playSoundFileNamed("shootSound.mp3", waitForCompletion: false))
         
         let touchLocation = touch.location(in: self)
           
-          //let projectile = SKSpriteNode(imageNamed: "projectile")
         let projectile = SKShapeNode(circleOfRadius: 25)
         projectile.fillColor = SKColor.red
         projectile.position = smoothieTower.position
-        //projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
         projectile.physicsBody = SKPhysicsBody(circleOfRadius: 12.5)
         projectile.physicsBody?.isDynamic = true
         projectile.physicsBody?.categoryBitMask = PhysicsCategory.projectile
@@ -225,23 +190,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Compute FPS
-        if lastUpdateTimeInterval > 0 {
-            let delta = currentTime - lastUpdateTimeInterval
-            let fps = 1 / delta
-            fpsLabel.text = "FPS: \(Int(fps))"
-        }
-        lastUpdateTimeInterval = currentTime
-
-        // Update spawn delay (assuming you have a way to access it, e.g., through a viewModel)
-        guard let spawnDelayTimeLabel = viewModel?.spawnDelay else {
-            return
-        }
-        spawnDelayLabel.text = "Spawn Delay: \(spawnDelayTimeLabel)"
-        
-        // Update node count
-        nodeCountLabel.text = "Nodes: \(self.children.count)"
-        
         self.children.forEach { node in
             if let sprite = node as? SKSpriteNode {
                 if sprite.physicsBody?.categoryBitMask == PhysicsCategory.enemy, sprite.position.x < 0 {

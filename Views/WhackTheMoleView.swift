@@ -24,6 +24,7 @@ struct WhackTheMoleView: View {
                 ZStack {
                 Rectangle()
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
+                    .ignoresSafeArea()
                     .foregroundColor(Color.bluePastel)
                     .scaledToFill()
                 Circle()

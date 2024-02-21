@@ -26,6 +26,7 @@ struct TowerDefenseView: View {
                 ZStack {
                     Image("TowerDefenceScene")
                         .resizable()
+                        .ignoresSafeArea()
                         .scaledToFill()
                     if (showInstruction) {
                         CardView(topic: "How to play", explanation: "In this game, you have to prevent the approaching threats but let the opportunity to come in our village to get the score. Protect our village at all cost!", exitText: "Let's go!", controlVariable: $showInstruction)
@@ -45,11 +46,12 @@ struct TowerDefenseView: View {
                                     .foregroundColor(Color.tomatoRed)
                                     .padding()
                                     .padding(.horizontal)
-                                    .background(Color.white)
-                                    .overlay(RoundedRectangle(cornerRadius: 17)
-                                        .stroke(Color.tomatoRed, lineWidth: 7)
-                                        .foregroundColor(Color.white)
-                                    )
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 17)
+                                            .stroke(Color.tomatoRed, lineWidth: 7)
+                                            .background(Color.white)
+                                    }
+                                    .clipShape(RoundedRectangle(cornerRadius: 17))
                                     .padding()
                                 
                                 Text("\(Image(systemName: "heart.fill")) \(viewModel.lifePoint)")
@@ -58,12 +60,14 @@ struct TowerDefenseView: View {
                                     .foregroundColor(Color.tomatoRed)
                                     .padding()
                                     .padding(.horizontal)
-                                    .background(Color.white)
-                                    .overlay(RoundedRectangle(cornerRadius: 17)
-                                        .stroke(Color.tomatoRed, lineWidth: 7)
-                                    )
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 17)
+                                            .stroke(Color.tomatoRed, lineWidth: 7)
+                                            .background(Color.white)
+                                    }
+                                    .clipShape(RoundedRectangle(cornerRadius: 17))
                                 Spacer()
-                                InstructionView(text:"Tap to shoot all of the threats of smoothie shop!")
+                                InstructionView(text:"Tap all of the threats of smoothie shop!")
                                     .padding()
                             }
                             Spacer()

@@ -39,7 +39,7 @@ struct MoleGameView: View {
                                     rageMode = true
                                 }
                                 if rageMode {
-                                    if (time%3 == 0){
+                                    if (time%2 == 0 && time != 14){
                                         moleIndex = randomMole()
                                         while (pots[moleIndex]){
                                             if (pots.allSatisfy { $0 == true }){
@@ -51,7 +51,7 @@ struct MoleGameView: View {
                                     }
                                 }
                                 else{
-                                    if (time%5 == 0){
+                                    if (time%3 == 0){
                                         moleIndex = randomMole()
                                         while (pots[moleIndex]){
                                             if (pots.allSatisfy { $0 == true }){

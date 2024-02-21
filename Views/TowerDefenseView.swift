@@ -29,7 +29,7 @@ struct TowerDefenseView: View {
                         .ignoresSafeArea()
                         .scaledToFill()
                     if (showInstruction) {
-                        CardView(topic: "How to play", explanation: "In this game, you have to prevent the approaching threats but let the opportunity to come in our village to get the score. Protect our village at all cost!", exitText: "Let's go!", controlVariable: $showInstruction)
+                        CardView(topic: "How to play", explanation: "In this game, you have to prevent the approaching threats but let the opportunity come to our village to get the score. Protect our village at all costs!", exitText: "Let's go!", controlVariable: $showInstruction)
                     }
                     else if (gameOver){
                         CardView(topic: "Game Over", explanation: "You get the high score of \(viewModel.score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)

@@ -21,7 +21,7 @@ struct OTMissedView: View {
             }
             else{
                 VStack {
-                    InstructionView(text: "Tap to see the explantions of each strengths and weakness")
+                    InstructionView(text: "Tap to see the explantions of each opportunities and threats")
                         .padding()
                     Spacer()
                     ForEach(0..<2){ rowIndex in

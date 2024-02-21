@@ -115,16 +115,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func updateSpawnDelay(_ newDelay: TimeInterval) {
-        self.removeAction(forKey: "spawningAction")
-        let spawnAction = SKAction.run { [weak self] in
-            self?.randomSpawnEnemy()
-        }
-        let delayAction = SKAction.wait(forDuration: newDelay)
-        let sequenceAction = SKAction.sequence([spawnAction, delayAction])
-        self.run(SKAction.repeatForever(sequenceAction), withKey: "spawningAction")
-    }
-    
     override func didMove(to view: SKView) {
 
         let background = SKSpriteNode(imageNamed: "TowerSceneBackground")

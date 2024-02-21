@@ -68,17 +68,17 @@ struct strengthWeaknessDescription {
 let swDescription: [strengthWeaknessDescription] = [
     //strength
     strengthWeaknessDescription(sw: "Use Fresh Fruit", desc: "Fresh fruits make smoothie more delicious! Customer will return to buy us again."),
-    strengthWeaknessDescription(sw: "Eco-freindly Package", desc: "Nowadays people care about how our business impact our world. Using eco-friendly packaging can attract more customers and make us outstanding!"),
+    strengthWeaknessDescription(sw: "Eco-friendly Package", desc: "Nowadays people care about how our business impact our world. Using eco-friendly packaging can attract more customers and make us outstanding!"),
     strengthWeaknessDescription(sw: "Various Products", desc: "Having a lot of choice can attract a lot of customers with several preference. So we can sell more!😆"),
-    strengthWeaknessDescription(sw: "Sell online", desc: "Having an online option can make me reach more customers and accomodate customers."),
-    strengthWeaknessDescription(sw: "Seasonal Menu Offering", desc: "Having seasonal menu can increase the value of our smoothies so the customers will buy us more!"),
+    strengthWeaknessDescription(sw: "Sell online", desc: "Having an online option can make me reach more customers and accommodate customers."),
+    strengthWeaknessDescription(sw: "Seasonal Menu Offering", desc: "Having seasonal menus can increase the value of our smoothies so the customers will buy us more!"),
     
     //weakness
     strengthWeaknessDescription(sw: "Limited Customers Group", desc: "Smoothies are likely to be interested by a small amount of customers: the one who loves smoothie and healthy lifestyle. So we may have less customers."),
     strengthWeaknessDescription(sw: "Relied on Suppliers", desc: "Ingredients like fruits are relied on the farmers. So we cannot control the price and the quality of the fruits."),
     strengthWeaknessDescription(sw: "Many Exotic Fruits Usage", desc: "Using a lot of exotic fruits can increase ingredients' price and may cause a shortage of ingredients."),
     strengthWeaknessDescription(sw: "Limited Operating Hours", desc: "Limited operating hours may result in limited time of selling our smoothies"),
-    strengthWeaknessDescription(sw: "High Labor Costs", desc: "Running a business requires some employees to operate. With higher cost to hire employee will make increase the cost."),
+    strengthWeaknessDescription(sw: "High Labor Costs", desc: "Running a business requires some employees to operate. With higher cost to hire employees will increase the cost."),
 ]
 
 //Oppportunities and Threats description structure

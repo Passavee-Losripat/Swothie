@@ -10,7 +10,7 @@ import SwiftUI
 struct PreTowerDefenceView: View {
     @State var dialogueIndex:Int = 0
     @State var changeView:Bool = false
-    let dialogueScript = ["Good job, my leader! Now you know about strengths and weakness, two keys elements of swot.", "Oh no! it's look like the enemy smoothies village is invading us! And the allies are approaching at the same time!", "Now you have to protect our village and learn about opportunities and threats!"]
+    let dialogueScript = ["Good job, my leader! Now you know about strengths and weakness, two key elements of SWOT.", "Oh no! it looks like the enemy smoothie village is invading us! And the allies are approaching at the same time!", "Now you have to protect our village and learn about opportunities and threats!"]
     var body: some View {
             if (changeView) {
                 TowerDefenseView()

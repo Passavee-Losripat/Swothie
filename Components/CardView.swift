@@ -22,6 +22,7 @@ struct CardView: View {
                 .font(.system(size: 40))
                 .padding(.bottom)
                 .foregroundColor(Color.tomatoRed)
+                .minimumScaleFactor(0.5)
             Button {
                 controlVariable.toggle()
             } label: {

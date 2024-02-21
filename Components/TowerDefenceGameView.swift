@@ -20,56 +20,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let smoothieTower = SKSpriteNode(imageNamed: "SmoothieTower")
     var enemies: [SKSpriteNode] = []
     var friends: [SKSpriteNode] = []
+    var spriteCache = [String: UIImage]()
     
     struct PhysicsCategory {
         static let none : UInt32 = 0
         static let all : UInt32 = UInt32.max
         static let enemy : UInt32 = 0b1
-        static let friend :UInt32 = 0b10
+        static let friend :UInt32 = 0b1
         static let projectile: UInt32 = 0b10
     }
     
     func spawnEnemy() {
-        if let enemyImage = renderImage(from: PlantTowerEnemyView(), size: CGSize(width: 300, height: 300)) {
-            let texture = SKTexture(image: enemyImage)
-            let enemy = SKSpriteNode(texture: texture)
-            enemy.position = CGPoint(x: size.width + enemy.size.width/2, y: randomSpawnPoint(max: size.height - enemy.size.height/2, min: enemy.size.height/2))
-            enemy.size = CGSize(width: 250, height: 250)
-            enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
-            enemy.physicsBody?.isDynamic = true
-            enemy.physicsBody?.categoryBitMask = PhysicsCategory.enemy
-            enemy.physicsBody?.contactTestBitMask = PhysicsCategory.projectile
-            enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
-            enemies.append(enemy)
-            addChild(enemy)
-            
-            let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
-            let actionMove = SKAction.move(to: CGPoint(x: -enemy.size.width/2, y: enemy.position.y), duration: TimeInterval(moveDuration))
-            let actionRemove = SKAction.removeFromParent()
-            enemy.run(SKAction.sequence([actionMove, actionRemove]))
+        let fruitImage = randomFruit()
+        let threat = randomThreatData()
+        let key = fruitImage + threat.message
+        var enemyImage:UIImage
+        
+        if let cacheImage = spriteCache[key] {
+            enemyImage = cacheImage
         }
+        else if let newImage = renderImage(from: PlantTowerEnemyView(sign: threat, imageName: fruitImage), size: CGSize(width: 250, height: 250)) {
+            enemyImage = newImage
+            spriteCache[key] = enemyImage
+        }
+        else{
+            enemyImage = UIImage(named: "Pot.png") ?? UIImage()
+        }
+        let texture = SKTexture(image: enemyImage)
+        let enemy = SKSpriteNode(texture: texture)
+        enemy.position = CGPoint(x: size.width + enemy.size.width/2, y: randomSpawnPoint(max: size.height - enemy.size.height/2, min: enemy.size.height/2))
+        enemy.size = CGSize(width: 250, height: 250)
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+        enemy.physicsBody?.isDynamic = true
+        enemy.physicsBody?.categoryBitMask = PhysicsCategory.enemy
+        enemy.physicsBody?.contactTestBitMask = PhysicsCategory.projectile
+        enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
+        enemies.append(enemy)
+        addChild(enemy)
+            
+        let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
+        let actionMove = SKAction.move(to: CGPoint(x: -enemy.size.width/2, y: enemy.position.y), duration: TimeInterval(moveDuration))
+        let actionRemove = SKAction.removeFromParent()
+        enemy.run(SKAction.sequence([actionMove, actionRemove]))
     }
     
     func spawnFriend() {
-        if let friendImage = renderImage(from: PlantTowerFriendView(), size: CGSize(width: 300, height: 300)) {
-            let texture = SKTexture(image: friendImage)
-            let friend = SKSpriteNode(texture: texture)
-            friend.position = CGPoint(x: size.width + friend.size.width/2, y: randomSpawnPoint(max: size.height - friend.size.height/2, min: friend.size.height/2))
-            friend.size = CGSize(width: 250, height: 250)
-            friend.physicsBody = SKPhysicsBody(rectangleOf: friend.size)
-            friend.physicsBody?.isDynamic = true
-            friend.physicsBody?.categoryBitMask = PhysicsCategory.friend
-            friend.physicsBody?.contactTestBitMask = PhysicsCategory.projectile
-            friend.physicsBody?.collisionBitMask = PhysicsCategory.none
-            friends.append(friend)
-            friends.append(friend)
-            addChild(friend)
-            
-            let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
-            let actionMove = SKAction.move(to: CGPoint(x: -friend.size.width/2, y: friend.position.y), duration: TimeInterval(moveDuration))
-            let actionRemove = SKAction.removeFromParent()
-            friend.run(SKAction.sequence([actionMove, actionRemove]))
+        let fruitImage = randomFruit()
+        let opportunity = randomOpportunityData()
+        let key = fruitImage + opportunity.message
+        var friendImage: UIImage
+        
+        if let cacheImage = spriteCache[key] {
+            friendImage = cacheImage
         }
+        else if let newImage = renderImage(from: PlantTowerEnemyView(sign: opportunity, imageName: fruitImage), size: CGSize(width: 250, height: 250)) {
+            friendImage = newImage
+            spriteCache[key] = friendImage
+        }
+        else {
+            friendImage = UIImage(named: "Pot.png") ?? UIImage()
+        }
+        let texture = SKTexture(image: friendImage)
+        let friend = SKSpriteNode(texture: texture)
+        friend.position = CGPoint(x: size.width + friend.size.width/2, y: randomSpawnPoint(max: size.height - friend.size.height/2, min: friend.size.height/2))
+        friend.size = CGSize(width: 250, height: 250)
+        friend.physicsBody = SKPhysicsBody(rectangleOf: friend.size)
+        friend.physicsBody?.isDynamic = true
+        friend.physicsBody?.categoryBitMask = PhysicsCategory.friend
+        friend.physicsBody?.contactTestBitMask = PhysicsCategory.projectile
+        friend.physicsBody?.collisionBitMask = PhysicsCategory.none
+        friends.append(friend)
+        addChild(friend)
+            
+        let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
+        let actionMove = SKAction.move(to: CGPoint(x: -friend.size.width/2, y: friend.position.y), duration: TimeInterval(moveDuration))
+        let actionRemove = SKAction.removeFromParent()
+            friend.run(SKAction.sequence([actionMove, actionRemove]))
     }
     
     func randomSpawnEnemy() {
@@ -82,13 +108,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func projectileDidCollideWithMonster(projectile: SKShapeNode, monster: SKSpriteNode) {
-      projectile.removeFromParent()
-      monster.removeFromParent()
+        projectile.removeFromParent()
+        monster.removeFromParent()
+        if let index = enemies.firstIndex(of: monster){
+            enemies.remove(at: index)
+        }
     }
     
     func projectileDidCollideWithFriends(projectile: SKShapeNode, friend: SKSpriteNode){
         projectile.removeFromParent()
         friend.removeFromParent()
+        if let index = friends.firstIndex(of: friend){
+            friends.remove(at: index)
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -183,7 +215,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
         enemies = enemies.filter { enemy in
                 if enemy.position.x < 0 {
                     viewModel?.lifePoint -= 100

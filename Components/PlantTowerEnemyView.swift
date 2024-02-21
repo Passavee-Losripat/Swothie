@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct PlantTowerEnemyView: View {
-    var sign = randomeThreatData()
-    var imageName = randomFruit()
+    var sign: otStructure
+    var imageName:String
     var body: some View {
         Group {
             ButtonText(text: sign.message, size: 20)
             Image(imageName)
                 .resizable()
                 .frame(maxWidth: 150, maxHeight: 150)
-                .onAppear()
         }
     }
 }
 
 #Preview {
-    PlantTowerEnemyView()
+    PlantTowerEnemyView(sign: otStructure(message: "Fluctuating Fruit Prices", isThreat: true), imageName: "Avocado")
 }

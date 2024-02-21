@@ -13,7 +13,7 @@ func randomOpportunityData() -> otStructure {
     return otData[Int.random(in: 0..<amount/2)]
 }
 
-func randomeThreatData() -> otStructure {
+func randomThreatData() -> otStructure {
     let amount = otData.count
     return otData[Int.random(in: amount/2..<amount)]
 }

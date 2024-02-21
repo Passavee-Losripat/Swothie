@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var viewModel: GameModel?
     var spawnDelay: TimeInterval = 1.0
     let smoothieTower = SKSpriteNode(imageNamed: "SmoothieTower")
+    var enemies: [SKSpriteNode] = []
+    var friends: [SKSpriteNode] = []
     
     struct PhysicsCategory {
         static let none : UInt32 = 0
@@ -38,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemy.physicsBody?.categoryBitMask = PhysicsCategory.enemy
             enemy.physicsBody?.contactTestBitMask = PhysicsCategory.projectile
             enemy.physicsBody?.collisionBitMask = PhysicsCategory.none
-            
+            enemies.append(enemy)
             addChild(enemy)
             
             let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
@@ -59,7 +61,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             friend.physicsBody?.categoryBitMask = PhysicsCategory.friend
             friend.physicsBody?.contactTestBitMask = PhysicsCategory.projectile
             friend.physicsBody?.collisionBitMask = PhysicsCategory.none
-            
+            friends.append(friend)
+            friends.append(friend)
             addChild(friend)
             
             let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
@@ -180,17 +183,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        self.children.forEach { node in
-            if let sprite = node as? SKSpriteNode {
-                if sprite.physicsBody?.categoryBitMask == PhysicsCategory.enemy, sprite.position.x < 0 {
+        
+        enemies = enemies.filter { enemy in
+                if enemy.position.x < 0 {
                     viewModel?.lifePoint -= 100
-                    sprite.removeFromParent()
+                    enemy.removeFromParent()
+                    return false
                 }
-                else if sprite.physicsBody?.categoryBitMask == PhysicsCategory.friend, sprite.position.x < 0 {
+                return true
+        }
+        
+        friends = friends.filter { friend in
+                if friend.position.x < 0 {
                     viewModel?.score += 100
-                    sprite.removeFromParent()
+                    friend.removeFromParent()
+                    return false
                 }
-            }
+                return true
         }
     }
 

@@ -10,7 +10,7 @@ import SwiftUI
 struct IntroStoryView: View {
     @State var dialogueIndex:Int = 0
     @State var endOfIntro:Bool = false
-    let dialogueScript = ["Hi! Welcome to Smoothie Village, where we aim to produce the greatest smoothie business in the world!", "You must be the new leader. I am your friendly villager, carrot. I will help you to be the best Smoothie village leader!", "As a leader, you have to improve our smoothie and protect our village from the enemy.", "But to do that, you must learn to use our heirloom weapon, SWOT sword first."]
+    let dialogueScript = ["Welcome, our new Swothie Village Head! I am Carrot MMXXIV, your advisor. Just call me Carrot!", "With the knowledge passed down from 2023 generations of carrot advisors, I will aid you in becoming the best village head!", "Here at Swothie Village, we work towards making SWOTHIE the greatest smoothie business in the world!", "Your role as our village head is to improve our smoothies and protect our village from enemies.", "However, you must first learn to use our heirloom weapon, the SWOT Sword. It is the most powerful weapon in the village!"]
     var body: some View {
         if endOfIntro {
             SwotExplainView()
@@ -27,7 +27,7 @@ struct IntroStoryView: View {
                     .padding()
             }
             .onTapGesture {
-                if (dialogueIndex == 3) {
+                if (dialogueIndex == 4) {
                     endOfIntro = true
                     dialogueIndex = 0
                 }

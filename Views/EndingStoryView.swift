@@ -10,7 +10,7 @@ import SwiftUI
 struct EndingStoryView: View {
     @State private var dialogueIndex:Int = 0
     @State private var changeView:Bool = false
-    let dialogueScript:[String] = ["My leader, great job! You have developed our smoothies village as well as defeated the enemies.", "My family has served the leaders for many generations. I can guarantee that you are the greatest of all time!", "I hope you can adapt our SWOT analysis with your daily life. Please let me serve you next time!"]
+    let dialogueScript:[String] = ["Terrific! You have developed our smoothies village as well as defeated the enemies.", "My family has served the leaders for many generations. I can guarantee that you are the greatest of all time!", "That is all from me! If you encounter any issues, feel free to come back to me for advice!"]
     var body: some View {
         NavigationView {
             if (changeView){

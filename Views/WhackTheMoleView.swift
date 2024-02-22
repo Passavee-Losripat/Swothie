@@ -32,10 +32,10 @@ struct WhackTheMoleView: View {
                         .foregroundColor(.white)
                         .scaledToFit()
                 if (showInstruction) {
-                    CardView(topic: "How to play", explanation: "In this game, you have to beat all of your weakness and avoid touching strength of our smoothie village. Try to think what can be good or bad for our smoothie product!", exitText: "Let's go!", controlVariable: $showInstruction)
+                    CardView(topic: "How to play", explanation: "Whack-The-Weakness is a game where you have to tap all of the \"weakness\" fruits of our Swothie village while avoiding \"strength\" after it’s grown from sapling. Swift tap but think thoroughly if it’s really disadvantageous for our smoothie business!", exitText: "Let's go!", controlVariable: $showInstruction)
                 }
                 else if (gameOver){
-                    CardView(topic: "Game Over", explanation: "You get a high score of \(score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)
+                    CardView(topic: "Game Over", explanation: "You have achieved a high score of \(score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)
                         .onAppear {
                             BackgroundMusicManager.shared.playMusic(musicNumber: 1)
                         }

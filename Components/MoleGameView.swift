@@ -81,7 +81,7 @@ struct MoleGameView: View {
                             .stroke(Color.tomatoRed, lineWidth: 7)
                         )
                     Spacer()
-                    InstructionView(text:rageMode ? "It's harvest season! The fruit will spawn faster." : "Tap all of the weakness of smoothie shop!")
+                    InstructionView(text:rageMode ? "It's harvest season! The fruit will spawn faster." : "Tap all \"weakness\" fruits!")
                         .padding()
                 }
                 Spacer()

@@ -16,7 +16,7 @@ struct SwotExplainView: View {
     @State var dialogueIndex:Int = 0
     @State var lastDialogue: Bool = false
     @State var changeView:Bool = false
-    let dialogueScript = ["Leader, this is the heirloom SWOT Sword. In order to master it, you need to master SWOT analysis.", "SWOT analysis is a framework used to analyze a situation by assessing both internal and external factors.", "SWOT analysis is applicable in project planning and in business. It can be used to improve our smoothie village too!", "The SWOT sword will give knowledge to the worthy one. Now touch the sword and see if you are worthy!", "Now you know about SWOT analysis. Let's see if you can spot strength and weakness of our smoothie village!"]
+    let dialogueScript = ["Leader, this is the heirloom SWOT Sword. In order to master it, you need to master SWOT analysis.", "SWOT analysis is a framework used to analyze a situation by assessing both internal and external factors.", "SWOT analysis can be used in project planning and in business. It is the secret behind our success in the past years!", "The SWOT sword will give knowledge to the worthy one. Now touch the sword and see if you are worthy!", "Now you know about SWOT analysis. Let's see if you can spot strength and weakness of our smoothie village!"]
     var body: some View {
         if (changeView){
             WhackTheMoleView()
@@ -30,7 +30,7 @@ struct SwotExplainView: View {
                     .scaledToFill()
                 if(swotExplain){
                     VStack {
-                        InstructionView(text: "You are worthy! Let's tap to see what is each character.")
+                        InstructionView(text: "You are worthy! Let's tap to see what each character is.")
                         HStack {
                             FloatingBallView(character: "S", color: Color.pink)
                                 .padding()

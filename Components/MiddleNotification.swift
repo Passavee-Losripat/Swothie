@@ -10,7 +10,7 @@ import SwiftUI
 struct MiddleNotification: View {
     var text:String
     @State private var notiTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var notiDuration:Int = 3
+    @State private var notiDuration:Int = 2
     @State private var show:Bool = true
     @State private var opacity:Double = 1
     var body: some View {

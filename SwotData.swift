@@ -24,7 +24,7 @@ let swData: [swStructure] = [
     //swStructure(message: "", isWeakness: false),
     
     //Weakness
-    swStructure(message: "Limited Customers Group", isWeakness: true),
+    swStructure(message: "Small Target Market", isWeakness: true),
     swStructure(message: "Relied on Suppliers", isWeakness: true),
     swStructure(message: "Many Exotic Fruits Usage", isWeakness: true),
     swStructure(message: "Limited Operating Hours", isWeakness: true),
@@ -50,10 +50,10 @@ let otData: [otStructure] = [
     //otStructure(message: "", isThreat: false),
     
     //Threats
-    otStructure(message: "Fluctuating Fruit Prices", isThreat: true),
+    otStructure(message: "Climate Change", isThreat: true),
     otStructure(message: "Rising Rental Cost", isThreat: true),
     otStructure(message: "Economic Downturns", isThreat: true),
-    otStructure(message: "Changing Consumer Trend", isThreat: true),
+    otStructure(message: "Negative Reviews", isThreat: true),
     otStructure(message: "Increasing Competition", isThreat: true),
     //otStructure(message: "", isThreat: true)
 ]
@@ -67,18 +67,18 @@ struct strengthWeaknessDescription {
 //All descriptions for strengths and weakness
 let swDescription: [strengthWeaknessDescription] = [
     //strength
-    strengthWeaknessDescription(sw: "Use Fresh Fruit", desc: "Fresh fruits make smoothie more delicious! Customer will return to buy us again."),
-    strengthWeaknessDescription(sw: "Eco-friendly Package", desc: "People now are concerned with how our business impacts the world. Sustainable practices like using eco-friendly packaging can attract more customers and make us outstanding!"),
-    strengthWeaknessDescription(sw: "Variety of Products", desc: "Having many options can attract a variety of customers with different preferences and encourage customers to return for other smoothies!😆"),
-    strengthWeaknessDescription(sw: "Sell online", desc: "Having an online option can make me reach more customers and accommodate customers."),
-    strengthWeaknessDescription(sw: "Seasonal Menu Offering", desc: "Having seasonal menus can increase the value of our smoothies so the customers will buy smoothies from us more often!"),
+    strengthWeaknessDescription(sw: "Use Fresh Fruit", desc: "Fresh fruits make our smoothie more delicious!"),
+    strengthWeaknessDescription(sw: "Eco-friendly Package", desc: " This can attract nature-lover customers and repute our brand"),
+    strengthWeaknessDescription(sw: "Variety of Products", desc: "Cater to people with different taste preferences"),
+    strengthWeaknessDescription(sw: "Sell online", desc: "We can reach our customers more than just offline!"),
+    strengthWeaknessDescription(sw: "Seasonal Menu Offering", desc: "Increase our smoothie’s variety and uniqueness"),
     
     //weakness
-    strengthWeaknessDescription(sw: "Limited Customers Group", desc: "Smoothies are likely to be interested by a small amount of customers: the one who loves smoothie and healthy lifestyle. So we may have less customers."),
-    strengthWeaknessDescription(sw: "Relied on Suppliers", desc: "Ingredients like fruits are relied on the farmers. So we cannot control the price and the quality of the fruits."),
-    strengthWeaknessDescription(sw: "Many Exotic Fruits Usage", desc: "Using a lot of exotic fruits can increase ingredients' price and may cause a shortage of ingredients."),
-    strengthWeaknessDescription(sw: "Limited Operating Hours", desc: "Limited operating hours may result in limited time of selling our smoothies"),
-    strengthWeaknessDescription(sw: "High Labor Costs", desc: "As SWOTHIE expands, the number of employees required increases, pushing the cost of production up."),
+    strengthWeaknessDescription(sw: "Small Target Market", desc: "Only smoothie lovers and health-conscious consumers will buy us.🥲"),
+    strengthWeaknessDescription(sw: "Relied on Suppliers", desc: "We cannot control the price nor the quality of the fruits."),
+    strengthWeaknessDescription(sw: "Many Exotic Fruits Usage", desc: "Exotic fruits usage may cause a shortage of ingredients and increase the cost."),
+    strengthWeaknessDescription(sw: "Limited Operating Hours", desc: "Limited operating hours results in our smoothie selling time limitation"),
+    strengthWeaknessDescription(sw: "High Labor Costs", desc: "Higher labor costs make our expenditure rise.🙀"),
 ]
 
 //Oppportunities and Threats description structure
@@ -92,15 +92,15 @@ struct opportunitiesThreatsDescription {
 let otDescription: [opportunitiesThreatsDescription] = [
     //Opportunities
     opportunitiesThreatsDescription(ot: "Cheaper Fruits", desc: "Cheaper fruits make the cost to make smoothies lower."),
-    opportunitiesThreatsDescription(ot: "Healthy life trend", desc: "Healthy life trend can increase our customers as people want to drink smoothies and get healthy💪!"),
-    opportunitiesThreatsDescription(ot: "Delivery Services", desc: "Delivery services platform may open new option for customer who is difficult to go to our smoothies village."),
-    opportunitiesThreatsDescription(ot: "Interested Investors", desc: "Investors can give money to us for expansion and marketing! This may increase our smoothie village growth."),
-    opportunitiesThreatsDescription(ot: "Franchise Expansion", desc: "Franchise store can increase our income without our direct management."),
+    opportunitiesThreatsDescription(ot: "Healthy life trend", desc: "This might result in people switching to healthy smoothies!💪"),
+    opportunitiesThreatsDescription(ot: "Delivery Services", desc: "Now we can sell smoothies direct to your door!"),
+    opportunitiesThreatsDescription(ot: "Interested Investors", desc: "We can get invested for our smoothie village expansion.🤠"),
+    opportunitiesThreatsDescription(ot: "Franchise Expansion", desc: "Allows increase in revenue without direct management.💸"),
     
     //Threats
-    opportunitiesThreatsDescription(ot: "Fluctuating Fruit Prices", desc: "Fruits are the main ingredients of the smoothies. The fluctuating fruit may make the cost to make smoothie higher."),
-    opportunitiesThreatsDescription(ot: "Rising Rental Cost", desc: "Rising rental cost directly increases our smoothies shop expenditure. We will have less profit if the rental cost keep rising!"),
-    opportunitiesThreatsDescription(ot: "Economic Downturns", desc: "Economics downturns make people want to spend less money. So we may have less customers than usual."),
-    opportunitiesThreatsDescription(ot: "Changing Consumer Trend", desc: "Changing consumer trend requires us to change our selling strategies. It can increase our expends."),
-    opportunitiesThreatsDescription(ot: "Having more opponents stores", desc: "Competitors can \"snatch\" our customers through lower prices or more appealing drinks!😡")
+    opportunitiesThreatsDescription(ot: "Climate Change", desc: "Climate Change may cause a shortage of fresh fruits."),
+    opportunitiesThreatsDescription(ot: "Rising Rental Cost", desc: "Rising rental cost will reduce our profits."),
+    opportunitiesThreatsDescription(ot: "Economic Downturns", desc: "People will buy smoothies less during the crisis."),
+    opportunitiesThreatsDescription(ot: "Negative Reviews", desc: "Negative reviews will disrepute our smoothies."),
+    opportunitiesThreatsDescription(ot: "Having more opponents stores", desc: "Competitors can \"snatch\" our customers!😡")
 ]

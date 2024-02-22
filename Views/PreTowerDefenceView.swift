@@ -26,6 +26,7 @@ struct PreTowerDefenceView: View {
                         .padding()
                 }
                 .onTapGesture {
+                    SoundEffectManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                     if (dialogueIndex == 2) {
                         changeView = true
                         dialogueIndex = 0

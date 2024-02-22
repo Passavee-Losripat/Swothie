@@ -71,6 +71,7 @@ struct PlantMoleView: View {
         .frame(maxWidth: 300, maxHeight: 200)
         .onTapGesture {
             if (hasMole) {
+                SoundEffectManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 hasMole.toggle()
                 if (sign.isWeakness) {
                     score += 100

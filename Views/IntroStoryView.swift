@@ -27,6 +27,7 @@ struct IntroStoryView: View {
                     .padding()
             }
             .onTapGesture {
+                SoundEffectManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
                 if (dialogueIndex == 4) {
                     endOfIntro = true
                     dialogueIndex = 0

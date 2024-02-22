@@ -103,6 +103,7 @@ struct SwotExplainView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarHidden(true)
         .onTapGesture {
+            SoundEffectManager.shared.playSoundEffect(fileName: "clickSound", fileType: "wav")
             if (dialogueIndex < 3){
                 dialogueIndex += 1
             }

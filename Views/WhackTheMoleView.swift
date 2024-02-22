@@ -33,6 +33,7 @@ struct WhackTheMoleView: View {
                         .scaledToFit()
                 if (showInstruction) {
                     CardView(topic: "How to play", explanation: "Whack-The-Weakness is a game where you have to tap all of the \"weakness\" fruits of our Swothie village while avoiding \"strength\" after it’s grown from sapling. Swift tap but think thoroughly if it’s really disadvantageous for our smoothie business!", exitText: "Let's go!", controlVariable: $showInstruction)
+                        .padding(.horizontal)
                 }
                 else if (gameOver){
                     CardView(topic: "Game Over", explanation: "You have achieved a high score of \(score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)

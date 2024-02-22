@@ -12,7 +12,7 @@ struct MoleGameView: View {
     @Binding var gameOver:Bool
     @Binding var score: Int
     @State var lifePoint: Int = 5
-    @State var time:Int = 45
+    @State var time:Int = 20
     @State var rageMode: Bool = false
     @State var pots: [Bool] = Array(repeating: false, count: 9)
     @State var moleIndex:Int = randomMole()
@@ -35,11 +35,11 @@ struct MoleGameView: View {
                         .padding()
                         .onReceive(timer) {  _ in
                             if (time > 0) {
-                                if (time == 15) {
+                                if (time == 10) {
                                     rageMode = true
                                 }
                                 if rageMode {
-                                    if (time%2 == 0 && time != 14){
+                                    if (time%2 == 0 && time != 8){
                                         moleIndex = randomMole()
                                         while (pots[moleIndex]){
                                             if (pots.allSatisfy { $0 == true }){

@@ -13,7 +13,7 @@ struct TowerDefenseView: View {
     @State var showInstruction: Bool = true
     @State var gameOver: Bool = false
     @State var changeView:Bool = false
-    @State private var time:Int = 45
+    @State private var time:Int = 20
     @StateObject var viewModel = GameModel()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -29,7 +29,8 @@ struct TowerDefenseView: View {
                         .ignoresSafeArea()
                         .scaledToFill()
                     if (showInstruction) {
-                        CardView(topic: "How to play", explanation: "In this game, you have to prevent the approaching threats but let the opportunity come to our village to get the score. Protect our village at all costs!", exitText: "Let's go!", controlVariable: $showInstruction)
+                        CardView(topic: "How to play", explanation: "Swothie-Defence is a game where you have to prevent \"threat\" fruits from invading our Swothie village but let \"opportunity\" fruits come in. Think thoroughly before tapping \"threat\" fruits or you may hurt our allies. Protect our village at all costs!", exitText: "Let's go!", controlVariable: $showInstruction)
+                            .padding(.horizontal)
                     }
                     else if (gameOver){
                         CardView(topic: "Game Over", explanation: "You get the high score of \(viewModel.score). Not Bad!", exitText: "Let's see what I missed", controlVariable: $changeView)

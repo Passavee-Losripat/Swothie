@@ -54,6 +54,7 @@ struct ContentView: View {
             }.navigationViewStyle(StackNavigationViewStyle())
             if creditIsOn {
                 CardView(topic: "CREDIT", explanation: creditText, exitText: "Back", controlVariable: $creditIsOn)
+                    .padding(.horizontal)
             }
         }
     }

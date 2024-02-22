@@ -56,15 +56,19 @@ struct SwotExplainView: View {
                     }
                     if (showStrength) {
                         CardView(topic: "S - Strength", explanation: "Strength refers to what you are good at. For example, the muscle is the strength of body builder.💪", exitText: "Got it!", controlVariable: $showStrength)
+                            .padding(.horizontal)
                     }
                     else if (showWeakness) {
                         CardView(topic: "W - Weakness", explanation: "Weakness refers to what you have to improve. For example, talking in front of people may be a weakness for shy people.🤒", exitText: "Got it!", controlVariable: $showWeakness)
+                            .padding(.horizontal)
                     }
                     else if (showOppportunity){
                         CardView(topic: "O - Opportunity", explanation: "Opportunity refers to the external situation that may give advantage to our organization. For example, new year season give you some time to rest and stay with your family.🤩", exitText: "Got it!", controlVariable: $showOppportunity)
+                            .padding(.horizontal)
                     }
                     else if (showThreat){
                         CardView(topic: "T - Threat", explanation: "Threat refers to the external situation that may harm our organization., For example, the rainy season may prevent us from going outside.😭", exitText: "Got it!", controlVariable: $showThreat)
+                            .padding(.horizontal)
                     }
                         HStack{
                             Spacer()

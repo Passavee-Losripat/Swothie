@@ -36,12 +36,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let key = fruitImage + threat.message
         var enemyImage:UIImage
         
-        if let cacheImage = spriteCache[key] {
+        if let cacheImage = ImageCache.shared.getImage(forKey: key) {
             enemyImage = cacheImage
         }
         else if let newImage = renderImage(from: PlantTowerEnemyView(sign: threat, imageName: fruitImage), size: CGSize(width: 250, height: 250)) {
             enemyImage = newImage
-            spriteCache[key] = enemyImage
+            ImageCache.shared.setImage(newImage, forKey: key)
         }
         else{
             enemyImage = UIImage(named: "Pot.png") ?? UIImage()
@@ -70,12 +70,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let key = fruitImage + opportunity.message
         var friendImage: UIImage
         
-        if let cacheImage = spriteCache[key] {
+        if let cacheImage = ImageCache.shared.getImage(forKey: key) {
             friendImage = cacheImage
         }
         else if let newImage = renderImage(from: PlantTowerEnemyView(sign: opportunity, imageName: fruitImage), size: CGSize(width: 250, height: 250)) {
             friendImage = newImage
-            spriteCache[key] = friendImage
+            ImageCache.shared.setImage(newImage, forKey: key)
         }
         else {
             friendImage = UIImage(named: "Pot.png") ?? UIImage()

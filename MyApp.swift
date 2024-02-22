@@ -8,6 +8,9 @@ struct MyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    ImageCache.shared.preloadImages()
+                }
         }
     }
 }

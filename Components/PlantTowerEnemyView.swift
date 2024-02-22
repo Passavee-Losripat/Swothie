@@ -17,6 +17,7 @@ struct PlantTowerEnemyView: View {
                 .resizable()
                 .frame(maxWidth: 150, maxHeight: 150)
         }
+        .frame(width: 250, height: 250)
     }
 }
 

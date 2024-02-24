@@ -59,7 +59,7 @@ struct SwotExplainView: View {
                             .padding(.horizontal)
                     }
                     else if (showWeakness) {
-                        CardView(topic: "W - Weakness", explanation: "Weakness refers to what you have to improve. For example,For example, my art skill is so amateur.😭", exitText: "Got it!", controlVariable: $showWeakness)
+                        CardView(topic: "W - Weakness", explanation: "Weakness refers to what you have to improve. For example, my art skill is so amateur.😭", exitText: "Got it!", controlVariable: $showWeakness)
                             .padding(.horizontal)
                     }
                     else if (showOppportunity){

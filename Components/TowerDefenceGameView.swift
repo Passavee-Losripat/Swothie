@@ -58,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemies.append(enemy)
         addChild(enemy)
             
-        let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
+        let moveDuration = randomSpawnPoint(max: 6.0, min: 4.0)
         let actionMove = SKAction.move(to: CGPoint(x: -enemy.size.width/2, y: enemy.position.y), duration: TimeInterval(moveDuration))
         let actionRemove = SKAction.removeFromParent()
         enemy.run(SKAction.sequence([actionMove, actionRemove]))
@@ -92,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         friends.append(friend)
         addChild(friend)
             
-        let moveDuration = randomSpawnPoint(max: 4.0, min: 2.0)
+        let moveDuration = randomSpawnPoint(max: 6.0, min: 4.0)
         let actionMove = SKAction.move(to: CGPoint(x: -friend.size.width/2, y: friend.position.y), duration: TimeInterval(moveDuration))
         let actionRemove = SKAction.removeFromParent()
             friend.run(SKAction.sequence([actionMove, actionRemove]))

@@ -1,6 +1,8 @@
 # Swothie
 **Swothie** is an educational game created for the Swift Student Challenge 2024, designed to help players master the essential skill of conducting a SWOT analysis (Strengths, Weaknesses, Opportunities, Threats) in a fun and interactive way.
 
+![Swothie Start Scene](https://github.com/user-attachments/assets/9680ec04-a96c-4501-b385-b0083cbd57f7)
+
 ## 📖 Project Description
 Swothie leverages **SwiftUI** and **SpriteKit** to deliver an engaging learning experience. With a modern design and smooth gameplay mechanics, it provides a platform to practice strategic thinking through real-world example through the game.
 To enhance performance and ensure a smooth user experience, the game also implements **sprite caching** for optimized rendering.
